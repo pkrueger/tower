@@ -2,7 +2,7 @@
   <div class="container-fluid scrollable-y">
     <div class="row">
       <div class="col-12">
-        <img src="../assets/img/homePageBanner.png" alt="" />
+        <img src="../assets/img/homePageBanner.png" alt="" class="w-100" />
       </div>
       <div class="col-12"></div>
       <div class="col-md-3 col-sm-4 col-xs-6" v-for="e in state.events">
