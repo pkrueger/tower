@@ -12,6 +12,10 @@ class TicketsService {
     if (hasTicket.accountId) {
       throw new BadRequest("You already have a ticket for this event.");
     }
+    const event = await eventsService.getEventById(data.eventId);
+    if (!event.capacity) {
+      throw new BadRequest("This event has no tickets left.");
+    }
 
     const ticket = await dbContext.Tickets.create(data);
     await ticket.populate("profile");
@@ -68,8 +72,6 @@ class TicketsService {
     if (ticket.accountId != accountId) {
       throw new Forbidden("You cannot return a ticket you do not own.");
     }
-    // const event = await eventsService.getEventById(ticket.eventId);
-
     await ticket.remove();
     await eventsService.increaseCapacityByEventId(ticket.eventId);
   }
