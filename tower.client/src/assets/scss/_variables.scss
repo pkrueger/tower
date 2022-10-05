@@ -1,13 +1,14 @@
 $body-bg: #e5e5e5;
-$primary: #3ba5dc;
+$primary: #56C7FB;
 $secondary: #8392ab;
-$success: #00f867;
-$info: #5d0149;
-$warning: #fbcf33;
-$danger: #ea0606;
+$success: #79E7AB;
+$info: #CCF3FD;
+$warning: #FFD464;
+$danger: #FF5977;
 $light: #e9ecef;
-$dark: #111927;
+$dark: #2A2D3A;
 $grey: #cbcbcb;
+$darkLight: #474C61;
 
 $font-sans-serif: Open Sans;
 $font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -21,6 +22,7 @@ $colors: (
   "warning": $warning,
   "info": $info,
   "dark": $dark,
+  "darkLight": $darkLight,
   "grey": $grey,
 );
 

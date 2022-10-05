@@ -8,30 +8,30 @@
       Login
     </button>
 
-    <div class="dropdown my-2 my-lg-0" v-else>
-      <div
-        class="dropdown-toggle selectable"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        id="authDropdown"
-      >
+    <div class="my-2 my-lg-0" v-else>
+      <div>
         <div v-if="account.picture || user.picture">
           <img
             :src="account.picture || user.picture"
             alt="account photo"
-            height="40"
-            class="rounded"
+            height="75"
+            class="profile-image"
           />
-          <span class="mx-3 text-success lighten-30">{{ account.name || user.name }}</span>
         </div>
       </div>
-      <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
+      <div
+        class="dropdown-menu p-0 list-group w-100"
+        aria-labelledby="authDropdown"
+      >
         <router-link :to="{ name: 'Account' }">
           <div class="list-group-item list-group-item-action hoverable">
             Manage Account
           </div>
         </router-link>
-        <div class="list-group-item list-group-item-action hoverable text-danger" @click="logout">
+        <div
+          class="list-group-item list-group-item-action hoverable text-danger"
+          @click="logout"
+        >
           <i class="mdi mdi-logout"></i>
           logout
         </div>
@@ -41,23 +41,23 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-import { AppState } from '../AppState'
-import { AuthService } from '../services/AuthService'
+import { computed } from "vue";
+import { AppState } from "../AppState";
+import { AuthService } from "../services/AuthService";
 export default {
   setup() {
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       async login() {
-        AuthService.loginWithPopup()
+        AuthService.loginWithPopup();
       },
       async logout() {
-        AuthService.logout({ returnTo: window.location.origin })
-      }
-    }
-  }
-}
+        AuthService.logout({ returnTo: window.location.origin });
+      },
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -74,5 +74,9 @@ export default {
 
 .hoverable {
   cursor: pointer;
+}
+
+.profile-image {
+  outline: 0.15rem solid var(--bs-dark);
 }
 </style>
