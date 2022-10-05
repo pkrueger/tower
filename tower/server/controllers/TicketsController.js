@@ -21,7 +21,10 @@ export class TicketsController extends BaseController {
   }
   async returnTicket(req, res, next) {
     try {
-      await ticketsService.removeTicket(req.params.ticketId, req.userInfo.id);
+      await ticketsService.deleteTicketById(
+        req.params.ticketId,
+        req.userInfo.id
+      );
       res.send("Ticket was returned.");
     } catch (error) {
       next(error);

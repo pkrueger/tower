@@ -56,19 +56,19 @@ class TicketsService {
     const ticket = await dbContext.Tickets.findById(ticketId).populate(
       "profile"
     );
-    // @ts-ignore
+
     if (!ticket) {
       throw new BadRequest("Bad Ticket Id");
     }
     return ticket;
   }
-  async removeTicket(ticketId, accountId) {
+  async deleteTicketById(ticketId, accountId) {
     const ticket = await this.getTicketByTicketId(ticketId);
 
     if (ticket.accountId != accountId) {
       throw new Forbidden("You cannot return a ticket you do not own.");
     }
-    const event = await eventsService.getEventById(ticket.eventId);
+    // const event = await eventsService.getEventById(ticket.eventId);
 
     await ticket.remove();
     await eventsService.increaseCapacityByEventId(ticket.eventId);
