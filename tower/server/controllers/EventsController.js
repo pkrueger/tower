@@ -1,4 +1,5 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
+import { commentsService } from "../services/CommentsService.js";
 import { eventsService } from "../services/EventsService.js";
 import { ticketsService } from "../services/TicketsService.js";
 import BaseController from "../utils/BaseController.js";
@@ -10,6 +11,7 @@ export class EventsController extends BaseController {
       .get("", this.getAllEvents)
       .get("/:eventId", this.getEventById)
       .get("/:eventId/tickets", this.getTicketsByEventId)
+      .get("/:eventId/comments", this.getCommentsByEventId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post("", this.createEvent)
       .put("/:eventId", this.editEvent)
@@ -27,6 +29,26 @@ export class EventsController extends BaseController {
     try {
       const event = await eventsService.getEventById(req.params.eventId);
       res.send(event);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getTicketsByEventId(req, res, next) {
+    try {
+      const tickets = await ticketsService.getTicketsByEventId(
+        req.params.eventId
+      );
+      res.send(tickets);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getCommentsByEventId(req, res, next) {
+    try {
+      const comments = await commentsService.getCommentsByEventId(
+        req.params.eventId
+      );
+      res.send(comments);
     } catch (error) {
       next(error);
     }
@@ -56,16 +78,6 @@ export class EventsController extends BaseController {
     try {
       await eventsService.cancelEvent(req.params.eventId, req.userInfo);
       res.send("Your event was cancelled.");
-    } catch (error) {
-      next(error);
-    }
-  }
-  async getTicketsByEventId(req, res, next) {
-    try {
-      const tickets = await ticketsService.getTicketsByEventId(
-        req.params.eventId
-      );
-      res.send(tickets);
     } catch (error) {
       next(error);
     }
