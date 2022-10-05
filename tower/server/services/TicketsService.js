@@ -9,7 +9,7 @@ class TicketsService {
       data.accountId
     );
     // @ts-ignore
-    if (hasTicket?.id) {
+    if (hasTicket.accountId) {
       throw new BadRequest("You already have a ticket for this event.");
     }
 
@@ -22,9 +22,11 @@ class TicketsService {
   }
 
   async checkIfTicketExists(eventId, accountId) {
-    const ticket = await dbContext.Tickets.find({ eventId, accountId })
-      .populate("profile")
-      .populate("event");
+    const ticket = await dbContext.Tickets.find({ eventId, accountId });
+
+    if (!ticket) {
+      throw new BadRequest("Bad Event or Account Id");
+    }
 
     return ticket;
   }
@@ -33,7 +35,7 @@ class TicketsService {
       "event"
     );
 
-    if (!tickets) {
+    if (!tickets.length) {
       throw new BadRequest("Bad Account Id");
     }
 
@@ -44,7 +46,7 @@ class TicketsService {
       "profile"
     );
 
-    if (!tickets) {
+    if (!tickets.length) {
       throw new BadRequest("Bad Even Id");
     }
 
@@ -54,9 +56,8 @@ class TicketsService {
     const ticket = await dbContext.Tickets.findById(ticketId).populate(
       "profile"
     );
-
     // @ts-ignore
-    if (!ticket.id) {
+    if (!ticket) {
       throw new BadRequest("Bad Ticket Id");
     }
     return ticket;
@@ -64,13 +65,13 @@ class TicketsService {
   async removeTicket(ticketId, accountId) {
     const ticket = await this.getTicketByTicketId(ticketId);
 
-    // @ts-ignore
     if (ticket.accountId != accountId) {
       throw new Forbidden("You cannot return a ticket you do not own.");
     }
+    const event = await eventsService.getEventById(ticket.eventId);
 
-    // @ts-ignore
     await ticket.remove();
+    await eventsService.increaseCapacityByEventId(ticket.eventId);
   }
 }
 export const ticketsService = new TicketsService();

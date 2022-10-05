@@ -58,6 +58,12 @@ class EventsService {
     event.capacity--;
     event.save();
   }
+  async increaseCapacityByEventId(eventId) {
+    const event = await this.getEventById(eventId);
+    // @ts-ignore
+    event.capacity++;
+    event.save();
+  }
 }
 
 export const eventsService = new EventsService();
