@@ -1,8 +1,34 @@
 <template>
   <div class="event-card square elevation-5">
     <img :src="event.coverImg" alt="" class="img-fluid" />
-    <div class="event-text event-text-style p-2">
-      {{ event.name }}
+    <div class="event-text event-text-style">
+      <h4 class="event-name pt-2 px-2">{{ event.name }}</h4>
+      <div class="event-small-text mb-2 px-2">{{ event.location }}</div>
+      <div class="event-small-text mb-2 px-2">
+        {{
+          new Date(event.startDate).toDateString() +
+          " " +
+          new Date(event.startDate).toLocaleTimeString()
+        }}
+      </div>
+      <div
+        v-if="event.isCanceled"
+        class="w-100 bg-danger text-black text-center warning fs-5"
+      >
+        Canceled
+      </div>
+      <div
+        class="text-end event-small-text text-white pb-2 px-2"
+        v-else-if="event.capacity > 0"
+      >
+        <span class="text-primary bg-dark rounded p-1">{{
+          event.capacity
+        }}</span>
+        spots left
+      </div>
+      <div v-else class="w-100 bg-warning text-black text-center warning fs-5">
+        At Capacity
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 .event-card {
-  outline: 0.2rem solid var(--bs-darkLight);
+  border: 0.2rem solid var(--bs-darkLight);
   position: relative;
   width: 100%;
   height: 0;
@@ -32,7 +58,7 @@ export default {
 
 .event-text {
   position: absolute;
-  height: 45%;
+  height: auto;
   bottom: 0;
   left: 0;
   right: 0;
@@ -41,11 +67,27 @@ export default {
 }
 
 .event-text-style {
-  color: rgba(255, 255, 255, 0.97);
   text-shadow: 0 0 0.2rem black;
-  font-weight: 600;
-  letter-spacing: 0.075rem;
   background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+}
+
+.event-name {
+  color: rgba(255, 255, 255, 0.97);
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+
+.event-small-text {
+  color: var(--bs-info);
+  opacity: 0.9;
+  font-weight: 600;
+  letter-spacing: 0.06rem;
+}
+
+.warning {
+  text-shadow: 0 0 0 black;
+  font-weight: 700;
+  letter-spacing: 0.04rem;
 }
 </style>
