@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
-import { BadRequest, Forbidden } from "../utils/Errors.js";
+import { BadRequest, Forbidden, NotFound } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 class EventsService {
@@ -14,6 +14,10 @@ class EventsService {
     const event = await dbContext.Events.findById(eventId).populate("creator");
     if (!event) {
       throw new BadRequest("Bad Event Id");
+    }
+
+    if (event.isCanceled) {
+      throw new NotFound("Event has been canceled.");
     }
 
     return event;

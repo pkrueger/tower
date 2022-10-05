@@ -21,7 +21,7 @@
         <button class="btn btn-success p-2">New Event</button>
       </li>
       <li v-if="state.user.isAuthenticated">
-        <button class="btn btn-outline-danger" @click="logout">Logout</button>
+        <button class="btn btn-danger" @click="logout">Logout</button>
       </li>
     </ul>
   </nav>

@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/events/:eventId",
     name: "Event Details",
-    component: loadPage("EventDetailPage"),
+    component: loadPage("EventDetailsPage"),
   },
   {
     path: "/account",
