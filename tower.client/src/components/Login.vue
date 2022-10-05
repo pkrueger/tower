@@ -16,6 +16,7 @@
             alt="account photo"
             height="75"
             class="profile-image"
+            :title="account.name"
           />
         </div>
       </div>

@@ -15,11 +15,13 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import { AppState } from "./AppState.js";
 import Navbar from "./components/Navbar.vue";
 
 export default {
   setup() {
-    return {};
+    return { AppState: computed(() => AppState) };
   },
   components: { Navbar },
 };

@@ -1,6 +1,16 @@
 <template>
   <div class="event-card square elevation-5">
-    <img :src="event.coverImg" alt="" class="img-fluid" />
+    <img
+      :src="event.coverImg"
+      alt=""
+      class="img-fluid"
+      :title="event.name"
+      @error="
+        (event) => {
+          event.target.src = 'src/assets/img/defaultImage.jpg';
+        }
+      "
+    />
     <div class="event-text event-text-style">
       <h4 class="event-name pt-2 px-2">{{ event.name }}</h4>
       <div class="event-small-text mb-2 px-2">{{ event.location }}</div>

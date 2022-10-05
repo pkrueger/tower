@@ -2,10 +2,17 @@
   <div class="container-fluid scrollable-y">
     <div class="row">
       <div class="col-12">
-        <img src="../assets/img/homePageBanner.png" alt="" class="w-100" />
+        <img
+          src="../assets/img/homePageBanner.png"
+          alt=""
+          class="w-100"
+          title="Welcome to the site"
+        />
       </div>
-      <div class="col-12"></div>
-      <div class="col-md-3 col-sm-4 col-xs-6" v-for="e in state.events">
+      <div class="col-12 my-4">
+        <FilterBarComp />
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6" v-for="e in state.events">
         <EventComp :event="e" :key="e.id" />
       </div>
     </div>
@@ -19,6 +26,7 @@ import { AppState } from "../AppState.js";
 import EventComp from "../components/EventComp.vue";
 import { eventsService } from "../services/EventsService.js";
 import Pop from "../utils/Pop.js";
+import FilterBarComp from "../components/FilterBarComp.vue";
 
 export default {
   setup() {
@@ -28,7 +36,7 @@ export default {
 
     async function getAllEvents() {
       try {
-        await eventsService.getAllEvents();
+        await eventsService.getEvents();
       } catch (error) {
         Pop.error(error, "[GetAllEvents]");
       }
@@ -40,7 +48,7 @@ export default {
 
     return { state };
   },
-  components: { EventComp },
+  components: { EventComp, FilterBarComp },
 };
 </script>
 

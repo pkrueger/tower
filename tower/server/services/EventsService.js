@@ -3,10 +3,11 @@ import { BadRequest, Forbidden } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 class EventsService {
-  async getAllEvents() {
-    const events = await dbContext.Events.find({ isCancelled: false }).populate(
-      "creator"
-    );
+  async getAllEvents(query) {
+    const events = await dbContext.Events.find({
+      isCancelled: false,
+      ...query,
+    }).populate("creator");
     return events;
   }
   async getEventById(eventId) {
