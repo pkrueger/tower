@@ -38,13 +38,27 @@
           </h5>
           <!-- TODO Make it so only one button shows up -->
           <button
+            class="btn btn-danger py-3 px-5 fs-5 elevation-2"
+            disabled
+            v-if="!state.event?.capacity"
+          >
+            No Spots Left <i class="fa-solid fa-person-walking ms-2"></i>
+          </button>
+          <button
+            class="btn btn-primary py-3 px-5 fs-5 elevation-2"
+            disabled
+            v-else-if="
+              state.attendees?.find((a) => a.profile.id == state.account.id)
+            "
+          >
+            You're Attending <i class="fa-solid fa-person ms-2"></i>
+          </button>
+          <button
             class="btn btn-warning py-3 px-5 fs-5 elevation-2"
             @click="becomeAttendee"
+            v-else
           >
             Attend <i class="fa-solid fa-person ms-2"></i>
-          </button>
-          <button class="btn btn-danger py-3 px-5 fs-5 elevation-2" disabled>
-            No Spots Left <i class="fa-solid fa-person-walking ms-2"></i>
           </button>
         </div>
       </div>
@@ -66,6 +80,8 @@ export default {
     const route = useRoute();
     const state = reactive({
       event: computed(() => AppState.activeEvent),
+      attendees: computed(() => AppState.attendees),
+      account: computed(() => AppState.account),
     });
 
     async function getEventById() {
