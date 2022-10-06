@@ -21,6 +21,8 @@
         <button
           class="btn btn-success p-2 elevation-2"
           aria-label="Create New Event"
+          data-bs-toggle="modal"
+          data-bs-target="#NewEventModal"
         >
           New Event
         </button>
@@ -35,6 +37,7 @@
         </button>
       </li>
     </ul>
+    <NewEventModal />
   </nav>
 </template>
 
@@ -44,6 +47,7 @@ import { reactive } from "vue";
 import { AppState } from "../AppState.js";
 import { AuthService } from "../services/AuthService.js";
 import Login from "./Login.vue";
+import NewEventModal from "./NewEventModal.vue";
 
 export default {
   setup() {
@@ -57,7 +61,7 @@ export default {
       },
     };
   },
-  components: { Login },
+  components: { Login, NewEventModal },
 };
 </script>
 

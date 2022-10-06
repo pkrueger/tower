@@ -18,6 +18,7 @@
                 name: 'Event Details',
                 params: { eventId: ticket?.eventId },
               }"
+              class="text-white"
             >
               <h5 class="ticket-text mb-3">{{ ticket.event?.name }}</h5>
             </router-link>
