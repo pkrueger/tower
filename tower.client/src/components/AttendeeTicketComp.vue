@@ -9,7 +9,14 @@
           class="py-3 ps-3 d-flex flex-column justify-content-between w-100 h-100"
         >
           <div class="text-stuff">
-            <h5 class="ticket-text mb-3">{{ ticket.event.name }}</h5>
+            <router-link
+              :to="{
+                name: 'Event Details',
+                params: { eventId: ticket.eventId },
+              }"
+            >
+              <h5 class="ticket-text mb-3">{{ ticket.event.name }}</h5>
+            </router-link>
             <h5 class="ticket-text text-info mb-1">
               {{ ticket.event.location }}
             </h5>

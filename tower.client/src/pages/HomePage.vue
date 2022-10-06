@@ -12,7 +12,10 @@
       <div class="col-12 my-4">
         <FilterBarComp class="elevation-1" />
       </div>
-      <div class="col-lg-3 col-md-4 col-sm-6" v-for="e in state.events">
+      <div
+        class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+        v-for="e in state.events"
+      >
         <EventComp :eventDetails="e" :key="e.id" class="elevation-1" />
       </div>
     </div>
