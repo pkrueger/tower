@@ -96,6 +96,7 @@ export default {
     max-width: 30%;
     height: fit-content;
     border: 0.2rem solid var(--bs-darkLight);
+    border-radius: 0.2rem;
   }
 
   .text-stuff {

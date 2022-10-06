@@ -3,7 +3,7 @@
     :to="{ name: 'Event Details', params: { eventId: event.id } }"
     :class="event.isCanceled ? 'disabled darken' : ''"
   >
-    <div class="event-card square elevation-5">
+    <div class="event-card elevation-5">
       <img
         :src="event.coverImg"
         alt=""
@@ -73,6 +73,10 @@ export default {
   padding-bottom: 100%;
   margin-bottom: 1.5rem;
   transition: transform 200ms ease-in-out;
+  border-radius: 0.1rem;
+  img {
+    border-radius: 0.1rem;
+  }
 }
 
 .event-card:hover {
@@ -112,5 +116,7 @@ export default {
   text-shadow: 0 0 0 black;
   font-weight: 700;
   letter-spacing: 0.04rem;
+  border-bottom-left-radius: 0.1rem;
+  border-bottom-right-radius: 0.1rem;
 }
 </style>

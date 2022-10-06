@@ -79,5 +79,6 @@ export default {
 
 .profile-image {
   outline: 0.15rem solid var(--bs-dark);
+  border-radius: 0.1rem;
 }
 </style>

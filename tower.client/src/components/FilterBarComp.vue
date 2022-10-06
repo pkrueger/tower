@@ -1,5 +1,7 @@
 <template>
-  <div class="filter-bar d-flex flex-wrap justify-content-around bg-darkLight">
+  <div
+    class="filter-bar d-flex flex-wrap justify-content-around bg-darkLight rounded"
+  >
     <button
       @click="getEventsByType('')"
       :class="`p-3 btn ${
