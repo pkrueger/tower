@@ -39,7 +39,7 @@ class TicketsService {
       "event"
     );
 
-    if (!tickets.length) {
+    if (!tickets) {
       throw new BadRequest("Bad Account Id");
     }
 

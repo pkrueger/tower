@@ -8,6 +8,7 @@
         state.typeActivated == '' ? 'btn-primary' : 'text-light'
       }`"
       :disabled="state.typeActivated == ''"
+      aria-label="See all events"
     >
       All
     </button>
@@ -17,6 +18,7 @@
         state.typeActivated == 'concert' ? 'btn-primary' : 'text-light'
       }`"
       :disabled="state.typeActivated == 'concert'"
+      aria-label="Concerts Filter"
     >
       Concerts
     </button>
@@ -26,6 +28,7 @@
         state.typeActivated == 'convention' ? 'btn-primary' : 'text-light'
       }`"
       :disabled="state.typeActivated == 'convention'"
+      aria-label="Conventions Filter"
     >
       Conventions
     </button>
@@ -35,6 +38,7 @@
         state.typeActivated == 'sport' ? 'btn-primary' : 'text-light'
       }`"
       :disabled="state.typeActivated == 'sport'"
+      aria-label="Sports Filter"
     >
       Sports
     </button>
@@ -44,6 +48,7 @@
         state.typeActivated == 'digital' ? 'btn-primary' : 'text-light'
       }`"
       :disabled="state.typeActivated == 'digital'"
+      aria-label="Digitals Filter"
     >
       Digital
     </button>

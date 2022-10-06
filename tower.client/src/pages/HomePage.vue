@@ -4,7 +4,7 @@
       <div class="col-12">
         <img
           src="../assets/img/homePageBanner.png"
-          alt=""
+          alt="Site welcome banner"
           class="w-100"
           title="Welcome to the site"
         />

@@ -1,29 +1,27 @@
 <template>
-  <button
-    class="btn btn-danger py-3 px-5 fs-5 elevation-2"
-    disabled
+  <div
+    class="rounded bg-danger py-3 px-5 fs-5 elevation-2"
     v-if="state.eventDetails?.isCanceled"
   >
     Event is Canceled <i class="fa-solid fa-person-walking ms-2"></i>
-  </button>
-  <button
-    class="btn btn-primary py-3 px-5 fs-5 elevation-2"
-    disabled
-    v-else-if="state.attendees?.find((a) => a.profile.id == state.account.id)"
+  </div>
+  <div
+    class="rounded bg-primary py-3 px-5 fs-5 elevation-2"
+    v-else-if="state.attendees?.find((a) => a.profile?.id == state.account.id)"
   >
     You're Attending <i class="fa-solid fa-person ms-2"></i>
-  </button>
-  <button
-    class="btn btn-danger py-3 px-5 fs-5 elevation-2"
-    disabled
+  </div>
+  <div
+    class="rounded bg-danger py-3 px-5 fs-5 elevation-2"
     v-else-if="!state.eventDetails?.capacity"
   >
     No Spots Left <i class="fa-solid fa-person-walking ms-2"></i>
-  </button>
+  </div>
   <button
     class="btn btn-warning py-3 px-5 fs-5 elevation-2"
     @click="becomeAttendee"
     v-else
+    aria-label="Attend Event"
   >
     Attend <i class="fa-solid fa-person ms-2"></i>
   </button>
@@ -59,4 +57,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+div {
+  text-shadow: 0 0 0 black;
+}
+</style>

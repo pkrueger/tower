@@ -18,10 +18,19 @@
         </router-link>
       </li>
       <li v-if="state.user.isAuthenticated">
-        <button class="btn btn-success p-2 elevation-2">New Event</button>
+        <button
+          class="btn btn-success p-2 elevation-2"
+          aria-label="Create New Event"
+        >
+          New Event
+        </button>
       </li>
       <li v-if="state.user.isAuthenticated">
-        <button class="btn btn-danger elevation-2" @click="logout">
+        <button
+          class="btn btn-danger elevation-2"
+          aria-label="Logout"
+          @click="logout"
+        >
           Logout
         </button>
       </li>

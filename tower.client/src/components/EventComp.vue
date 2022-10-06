@@ -6,7 +6,7 @@
     <div class="event-card elevation-5">
       <img
         :src="eventDetails.coverImg"
-        alt=""
+        :alt="eventDetails.name"
         class="img-fluid"
         :title="eventDetails.name"
         @error="

@@ -2,7 +2,11 @@
   <div class="attendee-ticket bg-darkLight d-flex">
     <div class="row">
       <div class="col-lg-3 text-center">
-        <img :src="ticket.event.coverImg" alt="" class="img-fluid" />
+        <img
+          :src="ticket.event?.coverImg"
+          :alt="ticket.event?.name"
+          class="img-fluid"
+        />
       </div>
       <div class="col-lg-9">
         <div
@@ -12,20 +16,24 @@
             <router-link
               :to="{
                 name: 'Event Details',
-                params: { eventId: ticket.eventId },
+                params: { eventId: ticket?.eventId },
               }"
             >
-              <h5 class="ticket-text mb-3">{{ ticket.event.name }}</h5>
+              <h5 class="ticket-text mb-3">{{ ticket.event?.name }}</h5>
             </router-link>
             <h5 class="ticket-text text-info mb-1">
-              {{ ticket.event.location }}
+              {{ ticket.event?.location }}
             </h5>
             <h5 class="ticket-text text-info">
-              {{ new Date(ticket.event.startDate).toDateString() }}
+              {{ new Date(ticket.event?.startDate).toDateString() }}
             </h5>
           </div>
           <div class="return-ticket-button text-end">
-            <button class="btn btn-danger" @click="returnTicket(ticket.id)">
+            <button
+              class="btn btn-danger"
+              aria-label="Return Ticket"
+              @click="returnTicket(ticket?.id)"
+            >
               Not Going
             </button>
           </div>
@@ -71,8 +79,8 @@ export default {
   }
   .cut-out {
     position: absolute;
-    right: -3%;
-    top: 25%;
+    right: -2%;
+    top: 22.5%;
     height: 7.5rem;
     width: 3.75rem;
     background-color: var(--bs-dark);

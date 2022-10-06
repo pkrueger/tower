@@ -42,6 +42,8 @@
       </div>
       <button
         class="btn cancel-button text-white"
+        title="Cancel Event"
+        aria-label="Cancel Event"
         @click="cancelEvent()"
         v-if="
           state.eventDetails?.creatorId == state.account.id &&

@@ -16,6 +16,8 @@
       <p>{{ c.body }}</p>
       <button
         class="btn delete-button"
+        title="Delete Comment"
+        aria-label="Delete Comment"
         @click="deleteComment(c.id)"
         v-if="c.creatorId == state.account.id"
       >
