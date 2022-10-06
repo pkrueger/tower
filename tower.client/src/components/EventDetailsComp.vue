@@ -37,7 +37,10 @@
             spots left
           </h5>
           <!-- TODO Make it so only one button shows up -->
-          <button class="btn btn-warning py-3 px-5 fs-5 elevation-2">
+          <button
+            class="btn btn-warning py-3 px-5 fs-5 elevation-2"
+            @click="becomeAttendee"
+          >
             Attend <i class="fa-solid fa-person ms-2"></i>
           </button>
           <button class="btn btn-danger py-3 px-5 fs-5 elevation-2" disabled>
@@ -56,6 +59,7 @@ import { AppState } from "../AppState.js";
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop.js";
 import { eventsService } from "../services/EventsService.js";
+import { attendeesService } from "../services/AttendeesService.js";
 
 export default {
   setup() {
@@ -72,11 +76,19 @@ export default {
       }
     }
 
+    async function becomeAttendee() {
+      try {
+        await attendeesService.becomeAttendee(route.params.eventId);
+      } catch (error) {
+        Pop.error(error, "[AttendEvent]");
+      }
+    }
+
     onMounted(() => {
       getEventById();
     });
 
-    return { state };
+    return { state, becomeAttendee };
   },
 };
 </script>

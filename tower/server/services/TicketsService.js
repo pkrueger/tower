@@ -50,10 +50,6 @@ class TicketsService {
       "profile"
     );
 
-    if (!tickets.length) {
-      throw new BadRequest("Bad Even Id");
-    }
-
     return tickets;
   }
   async getTicketByTicketId(ticketId) {
