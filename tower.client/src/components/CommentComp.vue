@@ -14,7 +14,11 @@
     <div class="comment-body text-dark px-3 py-2 elevation-2">
       <h6>{{ c.creator.name }}</h6>
       <p>{{ c.body }}</p>
-      <button class="btn delete-button" @click="deleteComment(c.id)">
+      <button
+        class="btn delete-button"
+        @click="deleteComment(c.id)"
+        v-if="c.creatorId == state.account.id"
+      >
         <i class="fa-solid fa-x"></i>
       </button>
     </div>
@@ -33,6 +37,7 @@ export default {
   setup() {
     const state = reactive({
       comments: computed(() => AppState.comments),
+      account: computed(() => AppState.account),
     });
     const route = useRoute();
 
@@ -46,8 +51,11 @@ export default {
 
     async function deleteComment(commentId) {
       try {
+        if (await Pop.confirm("Delete Comment?")) {
+          await commentsService.deleteComment(commentId);
+        }
       } catch (error) {
-        Pop.error(error);
+        Pop.error(error, "[DeleteComment]");
       }
     }
 
@@ -55,7 +63,7 @@ export default {
       getEventComments();
     });
 
-    return { state };
+    return { state, deleteComment };
   },
 };
 </script>
