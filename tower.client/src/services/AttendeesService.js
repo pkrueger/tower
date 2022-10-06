@@ -16,5 +16,9 @@ class AttendeesService {
     AppState.attendees.push(new Attendee(res.data));
     AppState.activeEvent.capacity--;
   }
+  async returnTicket(ticketId) {
+    await api.delete(`/api/tickets/${ticketId}`);
+    AppState.attendees = AppState.attendees.filter((a) => a.id != ticketId);
+  }
 }
 export const attendeesService = new AttendeesService();

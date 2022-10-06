@@ -25,7 +25,9 @@
             </h5>
           </div>
           <div class="return-ticket-button text-end">
-            <button class="btn btn-danger">Not Going</button>
+            <button class="btn btn-danger" @click="returnTicket(ticket.id)">
+              Not Going
+            </button>
           </div>
         </div>
       </div>
@@ -36,13 +38,24 @@
 
 <script>
 import { Attendee } from "../models/Attendee.js";
+import { attendeesService } from "../services/AttendeesService.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   props: {
     ticket: { type: Attendee, required: true },
   },
   setup() {
-    return {};
+    async function returnTicket(ticketId) {
+      try {
+        if (await Pop.confirm("Are you sure you don't want to attend?")) {
+          await attendeesService.returnTicket(ticketId);
+        }
+      } catch (error) {
+        Pop.error(error, "[ReturnTicket]");
+      }
+    }
+    return { returnTicket };
   },
 };
 </script>
