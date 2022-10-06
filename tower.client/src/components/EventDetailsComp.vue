@@ -140,7 +140,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   .event-details-content {
     padding: 2rem;
     img {

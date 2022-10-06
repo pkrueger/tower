@@ -1,18 +1,26 @@
 <template>
   <div class="attendee-ticket bg-darkLight d-flex">
-    <div class="img-container">
-      <img :src="ticket.event.coverImg" alt="" class="" />
-    </div>
-    <div class="py-3 ps-3 d-flex flex-column justify-content-between w-100">
-      <div class="text-stuff me-3">
-        <h5 class="ticket-text mb-3">{{ ticket.event.name }}</h5>
-        <h5 class="ticket-text text-info mb-1">{{ ticket.event.location }}</h5>
-        <h5 class="ticket-text text-info">
-          {{ new Date(ticket.event.startDate).toDateString() }}
-        </h5>
+    <div class="row">
+      <div class="col-lg-3 text-center">
+        <img :src="ticket.event.coverImg" alt="" class="img-fluid" />
       </div>
-      <div class="return-ticket-button text-end">
-        <button class="btn btn-danger">Not Going</button>
+      <div class="col-lg-9">
+        <div
+          class="py-3 ps-3 d-flex flex-column justify-content-between w-100 h-100"
+        >
+          <div class="text-stuff">
+            <h5 class="ticket-text mb-3">{{ ticket.event.name }}</h5>
+            <h5 class="ticket-text text-info mb-1">
+              {{ ticket.event.location }}
+            </h5>
+            <h5 class="ticket-text text-info">
+              {{ new Date(ticket.event.startDate).toDateString() }}
+            </h5>
+          </div>
+          <div class="return-ticket-button text-end">
+            <button class="btn btn-danger">Not Going</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cut-out"></div>
@@ -34,18 +42,10 @@ export default {
 
 <style lang="scss" scoped>
 .attendee-ticket {
-  min-height: 15rem;
-  min-width: 50vw;
+  max-height: 15rem;
+  max-width: 60rem;
   position: relative;
 
-  .img-container {
-    max-height: 15rem;
-    max-width: 15rem;
-    object-fit: contain;
-    img {
-      max-height: 15rem;
-    }
-  }
   .return-ticket-button {
     width: 90%;
   }
@@ -59,8 +59,9 @@ export default {
     border-radius: 7.5rem 0 0 7.5rem;
   }
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   .attendee-ticket {
+    max-height: 1000rem;
     .cut-out {
       height: 0;
       width: 0;
