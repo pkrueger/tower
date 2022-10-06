@@ -35,6 +35,7 @@ export default {
       try {
         editable.value.eventId = route.params.eventId;
         await commentsService.addComment(editable.value);
+        editable.value = {};
       } catch (error) {
         Pop.error(error, "[AddComment]");
       }

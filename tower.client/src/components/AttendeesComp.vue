@@ -5,7 +5,7 @@
         :src="a.profile.picture"
         :alt="a.profile.name"
         :title="a.profile.name"
-        class="img-fluid"
+        class="img-fluid elevation-2"
       />
     </div>
   </div>
@@ -50,9 +50,9 @@ export default {
 .attendee-image {
   height: 3rem;
   width: 3rem;
-  border-radius: 50%;
   img {
     border-radius: 50%;
+    object-fit: cover;
   }
 }
 </style>
