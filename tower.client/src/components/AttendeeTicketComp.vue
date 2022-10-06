@@ -1,6 +1,6 @@
 <template>
   <div class="attendee-ticket bg-darkLight d-flex">
-    <div class="row">
+    <div class="row w-100">
       <div class="col-lg-3 text-center">
         <img
           :src="ticket.event?.coverImg"
@@ -22,6 +22,11 @@
             >
               <h5 class="ticket-text mb-3">{{ ticket.event?.name }}</h5>
             </router-link>
+            <span class="d-flex" v-if="ticket.event?.isCanceled">
+              <div class="rounded bg-danger text-dark p-2 mb-3 no-select">
+                Even was canceled
+              </div>
+            </span>
             <h5 class="ticket-text text-info mb-1">
               {{ ticket.event?.location }}
             </h5>
@@ -73,6 +78,7 @@ export default {
 .attendee-ticket {
   max-height: 15rem;
   max-width: 60rem;
+  width: 100%;
   position: relative;
 
   .return-ticket-button {
