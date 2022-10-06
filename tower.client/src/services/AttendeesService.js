@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { Attendee } from "../models/Attendee.js";
 import { api } from "./AxiosService.js";
+import { eventsService } from "./EventsService.js";
 
 class AttendeesService {
   async getAttendeesByEventId(eventId) {
@@ -10,6 +11,7 @@ class AttendeesService {
   async becomeAttendee(eventId) {
     const res = await api.post("/api/tickets", { eventId });
     AppState.attendees.push(new Attendee(res.data));
+    AppState.activeEvent.capacity--;
   }
 }
 export const attendeesService = new AttendeesService();

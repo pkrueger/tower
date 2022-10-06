@@ -4,19 +4,17 @@
       <div class="col-12 col-lg-10 mb-5 mx-auto">
         <EventDetailsComp class="elevation-1" />
       </div>
-      <div class="col-12 col-lg-10 mb-5 mx-auto">
-        <h6 class="section-title" v-if="!state.event?.isCanceled">
-          See who is attending
-        </h6>
-        <AttendeesComp class="elevation-1" v-if="!state.event?.isCanceled" />
+      <div
+        class="col-12 col-lg-10 mb-5 mx-auto"
+        v-if="!state.event?.isCanceled"
+      >
+        <h6 class="section-title">See who is attending</h6>
+        <AttendeesComp class="elevation-1" />
       </div>
-      <div class="col-lg-8 mx-auto">
+      <div class="col-lg-8 mx-auto" v-if="!state.event?.isCanceled">
         <h6 class="section-title">What people are saying</h6>
         <div class="bg-darkLight px-5 py-4 elevation-1">
-          <CommentForm
-            class="mb-3"
-            v-if="state.account.id && !state.event?.isCanceled"
-          />
+          <CommentForm class="mb-3" v-if="state.account.id" />
           <CommentComp />
         </div>
       </div>

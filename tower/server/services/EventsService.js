@@ -16,10 +16,6 @@ class EventsService {
       throw new BadRequest("Bad Event Id");
     }
 
-    if (event.isCanceled) {
-      throw new NotFound("Event has been canceled.");
-    }
-
     return event;
   }
   async createEvent(data) {

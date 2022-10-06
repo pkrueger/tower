@@ -16,5 +16,9 @@ class EventsService {
     const res = await api.get("/api/events/" + eventId);
     AppState.activeEvent = new Event(res.data);
   }
+  async cancelEvent(eventId) {
+    const res = await api.delete("/api/events/" + eventId);
+    AppState.activeEvent.isCanceled = true;
+  }
 }
 export const eventsService = new EventsService();
