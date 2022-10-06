@@ -16,6 +16,10 @@ class EventsService {
     const res = await api.get("/api/events/" + eventId);
     AppState.activeEvent = new EventDetails(res.data);
   }
+  async getEventsByCreatorId(creatorId) {
+    const res = await api.get("/api/events", { params: { creatorId } });
+    AppState.events = res.data.map((e) => new EventDetails(e));
+  }
   async cancelEvent(eventId) {
     const res = await api.delete("/api/events/" + eventId);
     AppState.activeEvent.isCanceled = true;

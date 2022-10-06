@@ -27,7 +27,7 @@ import EventDetailsComp from "../components/EventDetailsComp.vue";
 import AttendeesComp from "../components/AttendeesComp.vue";
 import CommentForm from "../components/CommentForm.vue";
 import CommentComp from "../components/CommentComp.vue";
-import { reactive } from "vue";
+import { onUnmounted, reactive } from "vue";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 export default {
@@ -35,6 +35,10 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account),
       eventDetails: computed(() => AppState.activeEvent),
+    });
+    onUnmounted(() => {
+      AppState.attendees = [];
+      AppState.activeEvent = null;
     });
     return { state };
   },

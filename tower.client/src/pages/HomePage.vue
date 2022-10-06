@@ -21,7 +21,7 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted, reactive } from "vue";
+import { onMounted, onUnmounted, reactive } from "vue";
 import { AppState } from "../AppState.js";
 import EventComp from "../components/EventComp.vue";
 import { eventsService } from "../services/EventsService.js";
@@ -44,6 +44,10 @@ export default {
 
     onMounted(() => {
       getAllEvents();
+    });
+
+    onUnmounted(() => {
+      AppState.events = [];
     });
 
     return { state };

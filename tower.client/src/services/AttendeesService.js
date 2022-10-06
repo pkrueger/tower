@@ -7,6 +7,10 @@ class AttendeesService {
     const res = await api.get(`/api/events/${eventId}/tickets`);
     AppState.attendees = res.data.map((a) => new Attendee(a));
   }
+  async getAttendeesByAccountId() {
+    const res = await api.get("/account/tickets");
+    AppState.attendees = res.data.map((a) => new Attendee(a));
+  }
   async becomeAttendee(eventId) {
     const res = await api.post("/api/tickets", { eventId });
     AppState.attendees.push(new Attendee(res.data));
