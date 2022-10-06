@@ -36,37 +36,8 @@
             <span class="text-danger fs-4 me-2" v-else>0</span>
             spots left
           </h5>
-          <!-- TODO Make it so only one button shows up -->
-          <button
-            class="btn btn-danger py-3 px-5 fs-5 elevation-2"
-            disabled
-            v-if="state.event?.isCanceled"
-          >
-            Event is Canceled <i class="fa-solid fa-person-walking ms-2"></i>
-          </button>
-          <button
-            class="btn btn-primary py-3 px-5 fs-5 elevation-2"
-            disabled
-            v-else-if="
-              state.attendees?.find((a) => a.profile.id == state.account.id)
-            "
-          >
-            You're Attending <i class="fa-solid fa-person ms-2"></i>
-          </button>
-          <button
-            class="btn btn-danger py-3 px-5 fs-5 elevation-2"
-            disabled
-            v-else-if="!state.event?.capacity"
-          >
-            No Spots Left <i class="fa-solid fa-person-walking ms-2"></i>
-          </button>
-          <button
-            class="btn btn-warning py-3 px-5 fs-5 elevation-2"
-            @click="becomeAttendee"
-            v-else
-          >
-            Attend <i class="fa-solid fa-person ms-2"></i>
-          </button>
+          <!-- TODO ABSTRACT BUTTONS TO SEPARATE COMPONENT -->
+          <EventDetailsButtonsComp />
         </div>
       </div>
       <button
@@ -89,17 +60,15 @@ import { AppState } from "../AppState.js";
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop.js";
 import { eventsService } from "../services/EventsService.js";
-import { attendeesService } from "../services/AttendeesService.js";
+import EventDetailsButtonsComp from "./EventDetailsButtonsComp.vue";
 
 export default {
   setup() {
     const route = useRoute();
     const state = reactive({
       event: computed(() => AppState.activeEvent),
-      attendees: computed(() => AppState.attendees),
       account: computed(() => AppState.account),
     });
-
     async function getEventById() {
       try {
         await eventsService.getEventById(route.params.eventId);
@@ -107,15 +76,6 @@ export default {
         Pop.error(error, "[GetEventById]");
       }
     }
-
-    async function becomeAttendee() {
-      try {
-        await attendeesService.becomeAttendee(route.params.eventId);
-      } catch (error) {
-        Pop.error(error, "[AttendEvent]");
-      }
-    }
-
     async function cancelEvent() {
       try {
         if (await Pop.confirm("Cancel Event?")) {
@@ -125,13 +85,12 @@ export default {
         Pop.error(error, "[CancelEvent]");
       }
     }
-
     onMounted(() => {
       getEventById();
     });
-
-    return { state, becomeAttendee, cancelEvent };
+    return { state, cancelEvent };
   },
+  components: { EventDetailsButtonsComp },
 };
 </script>
 
