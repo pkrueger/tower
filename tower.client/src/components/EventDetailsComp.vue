@@ -3,27 +3,29 @@
     class="event-details-card w-100"
     :style="`background-image: url(${state.event?.coverImg})`"
   >
-    <div class="event-details-content w-100 d-flex flex-wrap p-5">
+    <div class="event-details-content w-100 d-flex flex-wrap">
       <img
         :src="state.event?.coverImg"
         :alt="state.event?.name"
         :title="state.event?.name"
       />
       <div class="text-stuff ps-4 d-flex flex-column">
-        <div class="d-flex justify-content-between mb-2">
+        <div class="d-flex flex-wrap justify-content-between mb-2">
           <h4>{{ state.event?.name }}</h4>
           <h5 class="text-info">
             {{ new Date(state.event?.startDate).toDateString() }}
           </h5>
         </div>
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex flex-wrap justify-content-between mb-3">
           <h5 class="text-info">{{ state.event?.location }}</h5>
           <h6 class="text-info">
             {{ new Date(state.event?.startDate).toLocaleTimeString() }}
           </h6>
         </div>
         <p class="mb-3 text-white">{{ state.event?.description }}</p>
-        <div class="d-flex justify-content-between mt-auto align-items-end">
+        <div
+          class="d-flex flex-wrap justify-content-between mt-auto align-items-end"
+        >
           <h5>
             <span
               class="text-primary fs-4 me-2"
@@ -80,24 +82,23 @@ export default {
 
 <style lang="scss" scoped>
 .event-details-card {
-  border: 0.01rem solid var(--bs-darkLight);
+  border: 0.1rem solid var(--bs-darkLight);
   text-shadow: 0 0 0.25rem black;
   background-size: cover;
   background-position: fixed;
 }
 .event-details-content {
   background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(15px);
+  padding: 3rem;
 
   img {
     max-width: 30%;
     height: fit-content;
-    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border: 0.2rem solid var(--bs-darkLight);
   }
 
   .text-stuff {
-    //TODO MAKE THIS WIDTH GO AWAY AT SMALLER SCREEN SIZE AND MAKE ALL FLEXBOXES
-    //WRAP SO IT LOOKS REAL GOOD
     max-width: 70%;
 
     div h4 {
@@ -111,6 +112,19 @@ export default {
 
     button:disabled {
       opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .event-details-content {
+    padding: 1.5rem;
+    img {
+      max-width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .text-stuff {
+      max-width: 100%;
     }
   }
 }
