@@ -44,6 +44,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.attendees-container {
+  min-height: 5rem;
+}
 .attendee-image {
   height: 3rem;
   width: 3rem;
