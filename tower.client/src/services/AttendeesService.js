@@ -1,7 +1,6 @@
 import { AppState } from "../AppState.js";
 import { Attendee } from "../models/Attendee.js";
 import { api } from "./AxiosService.js";
-import { eventsService } from "./EventsService.js";
 
 class AttendeesService {
   async getAttendeesByEventId(eventId) {

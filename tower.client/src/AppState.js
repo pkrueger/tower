@@ -5,9 +5,9 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
-  /** @type {import('./models/Event.js').Event[]} */
+  /** @type {import('./models/EventDetails.js').EventDetails[]} */
   events: [],
-  /** @type {import('./models/Event.js').Event | null} */
+  /** @type {import('./models/EventDetails.js').EventDetails | null} */
   activeEvent: null,
   /** @type {import('./models/Attendee.js').Attendee[]} */
   attendees: [],

@@ -2,7 +2,7 @@
   <button
     class="btn btn-danger py-3 px-5 fs-5 elevation-2"
     disabled
-    v-if="state.event?.isCanceled"
+    v-if="state.eventDetails?.isCanceled"
   >
     Event is Canceled <i class="fa-solid fa-person-walking ms-2"></i>
   </button>
@@ -16,7 +16,7 @@
   <button
     class="btn btn-danger py-3 px-5 fs-5 elevation-2"
     disabled
-    v-else-if="!state.event?.capacity"
+    v-else-if="!state.eventDetails?.capacity"
   >
     No Spots Left <i class="fa-solid fa-person-walking ms-2"></i>
   </button>
@@ -40,7 +40,7 @@ import Pop from "../utils/Pop.js";
 export default {
   setup() {
     const state = reactive({
-      event: computed(() => AppState.activeEvent),
+      eventDetails: computed(() => AppState.activeEvent),
       attendees: computed(() => AppState.attendees),
       account: computed(() => AppState.account),
     });

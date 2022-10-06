@@ -1,14 +1,14 @@
 <template>
   <router-link
-    :to="{ name: 'Event Details', params: { eventId: event.id } }"
-    :class="event.isCanceled ? 'disabled darken' : ''"
+    :to="{ name: 'Event Details', params: { eventId: eventDetails.id } }"
+    :class="eventDetails.isCanceled ? 'disabled darken' : ''"
   >
     <div class="event-card elevation-5">
       <img
-        :src="event.coverImg"
+        :src="eventDetails.coverImg"
         alt=""
         class="img-fluid"
-        :title="event.name"
+        :title="eventDetails.name"
         @error="
           (event) => {
             event.target.src = 'src/assets/img/defaultImage.jpg';
@@ -16,27 +16,29 @@
         "
       />
       <div class="event-text event-text-style">
-        <h4 class="event-name pt-2 px-2">{{ event.name }}</h4>
-        <div class="event-small-text mb-2 px-2">{{ event.location }}</div>
+        <h4 class="event-name pt-2 px-2">{{ eventDetails.name }}</h4>
+        <div class="event-small-text mb-2 px-2">
+          {{ eventDetails.location }}
+        </div>
         <div class="event-small-text mb-2 px-2">
           {{
-            new Date(event.startDate).toDateString() +
+            new Date(eventDetails.startDate).toDateString() +
             " " +
-            new Date(event.startDate).toLocaleTimeString()
+            new Date(eventDetails.startDate).toLocaleTimeString()
           }}
         </div>
         <div
-          v-if="event.isCanceled"
+          v-if="eventDetails.isCanceled"
           class="w-100 bg-danger text-black text-center warning fs-5"
         >
           Canceled
         </div>
         <div
           class="text-end event-small-text text-white pb-2 px-2"
-          v-else-if="event.capacity > 0"
+          v-else-if="eventDetails.capacity > 0"
         >
           <span class="text-primary bg-dark rounded p-1">{{
-            event.capacity
+            eventDetails.capacity
           }}</span>
           spots left
         </div>
@@ -52,11 +54,11 @@
 </template>
 
 <script>
-import { Event } from "../models/Event.js";
+import { EventDetails } from "../models/EventDetails.js";
 
 export default {
   props: {
-    event: { type: Event, required: true },
+    eventDetails: { type: EventDetails, required: true },
   },
   setup() {
     return {};

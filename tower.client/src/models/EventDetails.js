@@ -1,4 +1,4 @@
-export class Event {
+export class EventDetails {
   constructor(data) {
     this.id = data.id;
     this.creatorId = data.creatorId;

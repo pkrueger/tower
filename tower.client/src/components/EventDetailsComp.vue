@@ -1,37 +1,37 @@
 <template>
   <div
     class="event-details-card w-100"
-    :style="`background-image: url(${state.event?.coverImg})`"
+    :style="`background-image: url(${state.eventDetails?.coverImg})`"
   >
     <div class="event-details-content d-flex flex-wrap">
       <img
-        :src="state.event?.coverImg"
-        :alt="state.event?.name"
-        :title="state.event?.name"
+        :src="state.eventDetails?.coverImg"
+        :alt="state.eventDetails?.name"
+        :title="state.eventDetails?.name"
         class="elevation-2"
       />
       <div class="text-stuff ps-4 d-flex flex-column w-100">
         <div class="d-flex flex-wrap justify-content-between mb-2">
-          <h4>{{ state.event?.name }}</h4>
+          <h4>{{ state.eventDetails?.name }}</h4>
           <h5 class="text-info">
-            {{ new Date(state.event?.startDate).toDateString() }}
+            {{ new Date(state.eventDetails?.startDate).toDateString() }}
           </h5>
         </div>
         <div class="d-flex flex-wrap justify-content-between mb-3">
-          <h5 class="text-info">{{ state.event?.location }}</h5>
+          <h5 class="text-info">{{ state.eventDetails?.location }}</h5>
           <h6 class="text-info">
-            {{ new Date(state.event?.startDate).toLocaleTimeString() }}
+            {{ new Date(state.eventDetails?.startDate).toLocaleTimeString() }}
           </h6>
         </div>
-        <p class="mb-3 text-white">{{ state.event?.description }}</p>
+        <p class="mb-3 text-white">{{ state.eventDetails?.description }}</p>
         <div
           class="d-flex flex-wrap justify-content-between mt-auto align-items-end"
         >
           <h5 class="capacity-display">
             <span
               class="text-primary fs-4 me-2"
-              v-if="state.event?.capacity > 0"
-              >{{ state.event?.capacity }}</span
+              v-if="state.eventDetails?.capacity > 0"
+              >{{ state.eventDetails?.capacity }}</span
             >
             <span class="text-danger fs-4 me-2" v-else>0</span>
             spots left
@@ -44,7 +44,8 @@
         class="btn cancel-button text-white"
         @click="cancelEvent()"
         v-if="
-          state.event?.creatorId == state.account.id && !state.event?.isCanceled
+          state.eventDetails?.creatorId == state.account.id &&
+          !state.eventDetails?.isCanceled
         "
       >
         <i class="fa-solid fa-x"></i>
@@ -66,7 +67,7 @@ export default {
   setup() {
     const route = useRoute();
     const state = reactive({
-      event: computed(() => AppState.activeEvent),
+      eventDetails: computed(() => AppState.activeEvent),
       account: computed(() => AppState.account),
     });
     async function getEventById() {
