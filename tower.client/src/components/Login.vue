@@ -15,7 +15,7 @@
             :src="account.picture || user.picture"
             alt="account photo"
             height="75"
-            class="profile-image"
+            class="profile-image elevation-2"
             :title="account.name"
           />
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="attendees-container bg"></div>
+  <div class="attendees-container bg-darkLight p-3"></div>
 </template>
 
 <script>

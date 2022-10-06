@@ -10,10 +10,10 @@
         />
       </div>
       <div class="col-12 my-4">
-        <FilterBarComp />
+        <FilterBarComp class="elevation-1" />
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6" v-for="e in state.events">
-        <EventComp :event="e" :key="e.id" />
+        <EventComp :event="e" :key="e.id" class="elevation-1" />
       </div>
     </div>
   </div>

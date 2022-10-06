@@ -8,6 +8,7 @@
         :src="state.event?.coverImg"
         :alt="state.event?.name"
         :title="state.event?.name"
+        class="elevation-2"
       />
       <div class="text-stuff ps-4 d-flex flex-column">
         <div class="d-flex flex-wrap justify-content-between mb-2">
@@ -36,10 +37,10 @@
             spots left
           </h5>
           <!-- TODO Make it so only one button shows up -->
-          <button class="btn btn-warning py-3 px-5 fs-5">
+          <button class="btn btn-warning py-3 px-5 fs-5 elevation-2">
             Attend <i class="fa-solid fa-person ms-2"></i>
           </button>
-          <button class="btn btn-danger py-3 px-5 fs-5" disabled>
+          <button class="btn btn-danger py-3 px-5 fs-5 elevation-2" disabled>
             No Spots Left <i class="fa-solid fa-person-walking ms-2"></i>
           </button>
         </div>
