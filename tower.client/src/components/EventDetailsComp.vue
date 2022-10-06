@@ -27,7 +27,7 @@
         <div
           class="d-flex flex-wrap justify-content-between mt-auto align-items-end"
         >
-          <h5>
+          <h5 class="capacity-display">
             <span
               class="text-primary fs-4 me-2"
               v-if="state.event?.capacity > 0"
@@ -156,6 +156,9 @@ export default {
     .text-stuff {
       max-width: 100%;
     }
+  }
+  .capacity-display {
+    margin-bottom: 1.5rem;
   }
 }
 </style>
