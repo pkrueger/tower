@@ -18,7 +18,13 @@ class AttendeesService {
   }
   async returnTicket(ticketId) {
     await api.delete(`/api/tickets/${ticketId}`);
+    const ticket = AppState.attendees.find((t) => t.id == ticketId);
+    const event = AppState.events.find((e) => e.id == ticket.eventId);
     AppState.attendees = AppState.attendees.filter((a) => a.id != ticketId);
+
+    if (event) {
+      event.capacity++;
+    }
   }
 }
 export const attendeesService = new AttendeesService();

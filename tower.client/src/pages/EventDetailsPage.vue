@@ -48,8 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 .section-title {
-  color: var(--bs-darkLight);
+  color: #8a96c8;
   font-weight: 700;
-  filter: brightness(150%);
 }
 </style>

@@ -13,20 +13,28 @@
           class="py-3 ps-3 d-flex flex-column justify-content-between w-100 h-100"
         >
           <div class="text-stuff">
-            <router-link
-              :to="{
-                name: 'Event Details',
-                params: { eventId: ticket?.eventId },
-              }"
-              class="text-white"
-            >
-              <h5 class="ticket-text mb-3">{{ ticket.event?.name }}</h5>
-            </router-link>
-            <span class="d-flex" v-if="ticket.event?.isCanceled">
-              <div class="rounded bg-danger text-dark p-2 mb-3 no-select">
-                Even was canceled
+            <div>
+              <div class="d-flex gap-3" v-if="ticket.event?.isCanceled">
+                <h5 class="ticket-text mb-3">
+                  {{ ticket.event?.name }}
+                </h5>
+                <h5 class="text-white px-3 rounded canceled-text mb-3">
+                  Event was canceled
+                </h5>
               </div>
-            </span>
+              <router-link
+                :to="{
+                  name: 'Event Details',
+                  params: { eventId: ticket?.eventId },
+                }"
+                class="text-white"
+                v-else
+              >
+                <h5 class="ticket-text mb-3">
+                  {{ ticket.event?.name }}
+                </h5>
+              </router-link>
+            </div>
             <h5 class="ticket-text text-info mb-1">
               {{ ticket.event?.location }}
             </h5>
@@ -75,6 +83,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.canceled-text {
+  background-color: #ca475f;
+}
 .attendee-ticket {
   max-height: 15rem;
   max-width: 60rem;

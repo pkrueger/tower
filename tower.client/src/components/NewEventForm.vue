@@ -56,7 +56,7 @@
             class="form-control"
             id="eventCapacityInput"
             placeholder="capacity..."
-            min="0"
+            min="1"
             required
             v-model="editable.capacity"
           />

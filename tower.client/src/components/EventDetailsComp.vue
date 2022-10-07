@@ -102,7 +102,7 @@ export default {
   border: 0.1rem solid var(--bs-darkLight);
   text-shadow: 0 0 0.25rem black;
   background-size: cover;
-  background-position: fixed;
+  background-position: center;
 }
 .event-details-content {
   background-color: rgba(0, 0, 0, 0.6);
